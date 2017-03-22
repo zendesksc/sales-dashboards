@@ -1,9 +1,12 @@
 <%= form_for dashboard do |f| %>
 
   <% if dashboard.errors.any? %>
-    <% dashboard.errors.full_messages.each do |err| %>
-      <p><%= err %></p>
-    <% end %>
+    <h5>Can't create dashboard due to the following errors:</h5>
+    <ul class="list-group">
+      <% dashboard.errors.full_messages.each do |err| %>
+        <li class="list-group-item list-group-item-danger"><%= err %></li>
+      <% end %>
+    </ul>
   <% end %>
 
   <div class="form-group">
@@ -17,10 +20,10 @@
   <div class="form-group">
     <div class="row">
       <div class="col-md-6">
-        <%= f.submit %>
+        <%= f.submit "Create Dashboard", :class => "btn btn-primary" %>
       </div>
-      <div class="col md-6">
-        <%= link_to 'Cancel', dashboards_path, class: 'text-right'%>
+      <div class="col-md-6 text-right">
+        <%= link_to 'Cancel', dashboards_path, class: 'text-right btn btn-default'%>
       </div>
     </div>
   </div>
