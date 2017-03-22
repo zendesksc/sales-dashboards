@@ -1,11 +1,18 @@
-All dashboards
+<div class="row dashboards-header">
+  <div class="col-md-6">
+    <h3>Dashboards</h3>
+  </div>
+  <div class="col-md-6 text-right">
+    <%= link_to 'New Dashboard', new_dashboard_path, class: 'btn btn-success' %>
+  </div>
+</div>
 
 <% @dashboards.each do |d| %>
-  <hr>
-  <p><%= d.name %></p>
+  <h5><%= d.name %></h5>
   <p><%= d.url %></p>
-  <%= link_to 'edit', edit_dashboard_path(d) %>
-  <%= link_to 'delete', dashboard_path(d), 
-                        data: {:confirm => 'Are you sure?'}, :method => :delete %>
+  <%= link_to 'Edit', edit_dashboard_path(d), class: 'btn btn-primary' %>
+  <%= link_to 'Delete', dashboard_path(d), 
+                        data: {:confirm => 'Are you sure?'}, 
+                        :method => :delete, class: 'btn btn-danger' %>
   <hr>
 <% end %>
