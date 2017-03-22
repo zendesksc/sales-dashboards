@@ -17,6 +17,7 @@
     <%= f.label :url %>
     <%= f.text_field :url, class: "form-control" %>
   </div>
+  <%= f.collection_select(:department_id, Department.all, :id, :name) %>
   <div class="form-group">
     <div class="row">
       <div class="col-md-6">

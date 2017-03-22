@@ -41,6 +41,6 @@ class DashboardsController < ApplicationController
     end
 
     def dashboard_params
-      params.require(:dashboard).permit(:name, :url)
+      params.require(:dashboard).permit(:name, :url, :department_id)
     end
 end
