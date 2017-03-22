@@ -2,7 +2,7 @@ class DashboardsController < ApplicationController
   before_action :set_dashboard, only: [:show, :edit, :update, :destroy]
 
   def index
-    @dashboards = Dashboard.all
+    @dashboards = Dashboard.order(:name)
   end
 
   def new
