@@ -8,7 +8,7 @@
 </div>
 
 <% @dashboards.each do |d| %>
-  <h5><%= d.name %></h5>
+  <h5><%= d.name %> <span class="badge"><%= d.department.name %></span></h5>
   <p><%= d.url %></p>
   <%= link_to 'Edit', edit_dashboard_path(d), class: 'btn btn-primary' %>
   <%= link_to 'Delete', dashboard_path(d), 
