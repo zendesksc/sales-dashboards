@@ -1,0 +1,17 @@
+<%= form_for dashboard do |f| %>
+
+  <% if dashboard.errors.any? %>
+    <% dashboard.errors.full_messages.each do |err| %>
+      <p><%= err %></p>
+    <% end %>
+  <% end %>
+
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+  <br><br>
+  <%= f.label :url %><br>
+  <%= f.text_field :url %>
+  <br><br>
+  <%= f.submit %>
+  
+<% end %>

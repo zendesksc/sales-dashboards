@@ -1,0 +1,11 @@
+All dashboards
+
+<% @dashboards.each do |d| %>
+  <hr>
+  <p><%= d.name %></p>
+  <p><%= d.url %></p>
+  <%= link_to 'edit', edit_dashboard_path(d) %>
+  <%= link_to 'delete', dashboard_path(d), 
+                        data: {:confirm => 'Are you sure?'}, :method => :delete %>
+  <hr>
+<% end %>
