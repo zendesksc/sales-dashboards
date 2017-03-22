@@ -1,18 +1,21 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 Dashboard.create([
   {
     name: 'EMEA Leaderboard Ranking Quarterly',
-    url: 'https://salesops.bime.io/dashboard/EMEA-leaderboard-ranking-qtrly#region=EMEA'
+    url: 'https://salesops.bime.io/dashboard/EMEA-leaderboard-ranking-qtrly#region=EMEA',
+    department_id: 1
   },
   {
     name: 'EMEA Leaderboard Ranking Monthly',
-    url: 'https://salesops.bime.io/dashboard/EMEA-leaderboard-ranking-mthly#region=EMEA'
+    url: 'https://salesops.bime.io/dashboard/EMEA-leaderboard-ranking-mthly#region=EMEA',
+    department_id: 1
+  }
+])
+
+Department.create([
+  {
+    name: 'Sales'
+  },
+  {
+    name: 'Pre-Sales'
   }
 ])

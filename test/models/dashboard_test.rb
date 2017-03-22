@@ -3,7 +3,8 @@ require 'test_helper'
 class DashboardTest < ActiveSupport::TestCase
 
     setup do
-      @dashboard = Dashboard.new({ name: "Sales Quarterly Dashboard", url: "https://bime.io/sales/wallboard"})
+      @department = Department.create({ name: 'Sales' })
+      @dashboard = @department.dashboards.build({ name: "Sales Quarterly Dashboard", url: "https://bime.io/sales/wallboard"})
     end
 
     test "should be valid" do
