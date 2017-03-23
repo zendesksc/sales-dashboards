@@ -1,0 +1,5 @@
+<h4><%= @department.name %></h4>
+
+<% @department.dashboards.each do |d| %>
+  <p><%= d.url %></p>
+<% end %>
