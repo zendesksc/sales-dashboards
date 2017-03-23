@@ -19,6 +19,25 @@
 @import "dashboards/header";
 @import "dashboards/iframe";
 
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .field_with_errors input[type="text"]{
   border: 1px solid #a94442;
+}
+
+.block {
+  display: block;
+  padding: 70px;
+  text-align: center;
+  border-radius: 3px;
+  background: #337ab7;
+  color: #fff;
+
+  &:hover {
+    background: lighten(#337ab7, 10%);
+  }
 }

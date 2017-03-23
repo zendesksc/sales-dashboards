@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-9">
+    <h3>Available Dashboards</h3>
+    <hr>
+    <div class="row">
+      <% @departments.each do |department| %>
+        <div class="col-md-6">
+          <%= link_to department do %>
+            <div class="block">
+              <%= department.name %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <h3>Admin</h3>
+    <hr>
+    <%= link_to "Dashboards Admin", dashboards_path, class: 'btn btn-default btn-block' %>
+    <%= link_to "New Dashboard", new_dashboard_path, class: 'btn btn-success btn-block' %>
+  </div>
+</div>
+
