@@ -2,7 +2,7 @@ class DashboardsController < ApplicationController
   before_action :set_dashboard, only: [:show, :edit, :update, :destroy]
 
   def index
-    @dashboards = Dashboard.all
+    @dashboards = Dashboard.order(:name)
   end
 
   def new
@@ -41,6 +41,6 @@ class DashboardsController < ApplicationController
     end
 
     def dashboard_params
-      params.require(:dashboard).permit(:name, :url)
+      params.require(:dashboard).permit(:name, :url, :department_id)
     end
 end

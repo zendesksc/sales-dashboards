@@ -8,8 +8,8 @@
 </div>
 
 <% @dashboards.each do |d| %>
-  <h5><%= d.name %> - <%= d.department.name %></h5>
-  <p><%= d.url %></p>
+  <h5><%= d.name %> <span class="badge"><%= d.department.name %></span></h5>
+  <p><%= link_to d.url, d.url, target: "_blank" %> <span class="glyphicon glyphicon-new-window"></p>
   <%= link_to 'Edit', edit_dashboard_path(d), class: 'btn btn-primary' %>
   <%= link_to 'Delete', dashboard_path(d), 
                         data: {:confirm => 'Are you sure?'}, 
