@@ -1,5 +1,13 @@
-<h4><%= @department.name %></h4>
+<h1 class="dashboard-loading">Loading...</h1>
 
 <% @department.dashboards.each do |d| %>
-  <p><%= d.url %></p>
+  <iframe class="dashboard-iframe" src="<%= d.url %>" frameborder="0"></iframe>
 <% end %>
+
+<script>
+
+$('.dashboard-iframe').on('load', function() {
+  $('.dashboard-iframe').show();
+});
+
+</script>
