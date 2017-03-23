@@ -1,13 +1,20 @@
-<h1 class="dashboard-loading">Loading...</h1>
+<% if @department.dashboards.length > 0 %>
+  
+  <h1 class="dashboard-loading">Loading <%= @department.name %> dashboards...</h1>
+  
+  <% @department.dashboards.each do |d| %>
+    <iframe class="dashboard-iframe" src="<%= d.url %>" frameborder="0"></iframe>
+  <% end %>
 
-<% @department.dashboards.each do |d| %>
-  <iframe class="dashboard-iframe" src="<%= d.url %>" frameborder="0"></iframe>
+  <script>
+    $('.dashboard-iframe').on('load', function() {
+      $('.dashboard-iframe').show();
+    });
+  </script>
+
+<% else %>
+  <h1 class="dashboard-loading">
+    No dashboards found for <%= @department.name %>.
+  </h1>
 <% end %>
 
-<script>
-
-$('.dashboard-iframe').on('load', function() {
-  $('.dashboard-iframe').show();
-});
-
-</script>
