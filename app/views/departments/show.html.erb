@@ -2,14 +2,30 @@
   
   <h1 class="dashboard-loading">Loading <%= @department.name %> dashboards...</h1>
   
-  <% @department.dashboards.each do |d| %>
-    <iframe class="dashboard-iframe" src="<%= d.url %>" frameborder="0"></iframe>
+  <% @department.dashboards.each do |dashboard| %>
+    <iframe src="<%= dashboard.url %>" frameborder="0" class="dashboard-iframe"></iframe>
   <% end %>
 
   <script>
-    $('.dashboard-iframe').on('load', function() {
-      $('.dashboard-iframe').show();
-    });
+    var dashboards = $('.dashboard-iframe');
+    var numOfDashboards = $('.dashboard-iframe').length - 1;
+    var currentItem = 0;
+    var delay = 20000;
+
+    $($('.dashboard-iframe')[numOfDashboards]).on('load', function() {
+
+      $((dashboards)[currentItem]).show()
+
+      setInterval(function() {
+        $((dashboards)[currentItem]).hide()
+        if(currentItem == numOfDashboards) {
+          currentItem = 0
+        }else {
+          currentItem++
+        }
+        $((dashboards)[currentItem]).show()
+      }, delay)
+    })
   </script>
 
 <% else %>
