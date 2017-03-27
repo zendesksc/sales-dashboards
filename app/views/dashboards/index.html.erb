@@ -8,17 +8,20 @@
   </div>
 </div>
 
-<% @dashboards.each do |d| %>
-  <h5>
-    <%= d.name %> 
-    <%= link_to department_path(d.department) do %>
-      <span class="badge"><%= d.department.region.name %> <%= d.department.name %></span>
-    <% end %>
-  </h5>
-  <p><%= link_to d.url, d.url, target: "_blank" %> <span class="glyphicon glyphicon-new-window"></p>
-  <%= link_to 'Edit', edit_dashboard_path(d), class: 'btn btn-primary' %>
-  <%= link_to 'Delete', dashboard_path(d), 
-                        data: {:confirm => 'Are you sure?'}, 
-                        :method => :delete, class: 'btn btn-danger' %>
-  <hr>
+<% @departments.each do |department| %>
+  <% if department.dashboards.count > 0 %>
+    <div class="dashboard-listing">
+      <h4><div class=""><%= department.region.name %> <%= department.name %></div></h4>
+      <hr>
+      <% department.dashboards.each do |dashboard| %>
+        <h5><%= dashboard.name %></h5>
+        <p><%= link_to dashboard.url, dashboard.url, target: "_blank" %> <span class="glyphicon glyphicon-new-window"></p>
+        <%= link_to 'Edit', edit_dashboard_path(dashboard), class: 'btn btn-primary' %>
+        <%= link_to 'Delete', dashboard_path(dashboard), 
+                              data: {:confirm => 'Are you sure?'}, 
+                              :method => :delete, class: 'btn btn-danger' %>
+        <hr>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

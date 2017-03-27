@@ -4,13 +4,15 @@
     <hr>
     <div class="row">
       <% @departments.each do |department| %>
-        <div class="col-md-6">
-          <%= link_to department do %>
-            <div class="block">
-              <%= department.region.name %> <%= department.name %>
-            </div>
-          <% end %>
-        </div>
+        <% if department.dashboards.count > 0 %>
+          <div class="col-md-6">
+            <%= link_to department do %>
+              <div class="block">
+                <%= department.region.name %> <%= department.name %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
