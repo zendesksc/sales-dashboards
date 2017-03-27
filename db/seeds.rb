@@ -27,6 +27,14 @@ Department.create([
   {
     name: 'Pre-Sales',
     region_id: 2
+  },
+  {
+    name: 'Sales',
+    region_id: 3
+  },
+  {
+    name: 'Pre-Sales',
+    region_id: 3
   }
 ])
 
@@ -36,5 +44,8 @@ Region.create([
   },
   {
     name: 'AMER'
+  },
+  {
+    name: 'APAC'
   }
 ])
