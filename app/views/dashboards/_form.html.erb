@@ -16,7 +16,12 @@
     <%= f.text_field :url, class: "form-control", placeholder: "URL" %>
   </div>
   <div class="form-group">
-    <%= f.collection_select(:department_id, Department.all, :id, :name, {}, { :class => "form-control"}) %>
+    <% regions_array = Region.all.map { |region| [region.name, region.id] } %>
+    <%= select_tag(:region, options_for_select(regions_array), { :class => "form-control", :id => "regionSelect" }) %>
+  </div>
+  <div class="form-group">
+    <% departments_array = Department.all.map { |department| [department.name, department.id, { "data-region-id" => department.region_id}] } %>
+    <%= f.select(:department_id, options_for_select(departments_array), {}, { :class => "form-control", :id => "departmentSelect" }) %>
   </div>
   <div class="form-group">
     <div class="row">
@@ -29,3 +34,33 @@
     </div>
   </div>
 <% end %>
+
+<script>
+
+  let allOptions = $('#departmentSelect').children()
+
+  $('#departmentSelect').hide()
+  setDepartments()
+
+  $('#regionSelect').change(function() {
+    setDepartments()
+  })
+
+  function getDepartmentsForRegion(id) {
+    let newDepartments = [];
+    $(allOptions).each(function(index, department) {
+      if($(department).data('region-id') == id) {
+        newDepartments.push(department)
+      }
+    })
+    return newDepartments;
+  }
+
+  function setDepartments() {
+    let selectedRegionId = $('#regionSelect').find(":selected").val()
+    let newDepartments = getDepartmentsForRegion(selectedRegionId)
+    $('#departmentSelect').empty().append(newDepartments)
+    $('#departmentSelect').show()
+  }
+
+</script>

@@ -13,10 +13,4 @@ class DepartmentTest < ActiveSupport::TestCase
     @department.name = ''
     assert_not @department.valid?
   end
-
-  test "name should be unique" do
-    department1 = Department.create({ name: 'test' })
-    department2 = Department.new({ name: 'test'})
-    assert_not department2.save
-  end
 end

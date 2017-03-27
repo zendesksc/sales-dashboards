@@ -13,10 +13,20 @@ Dashboard.create([
 
 Department.create([
   {
-    name: 'Sales'
+    name: 'Sales',
+    region_id: 1
   },
   {
-    name: 'Pre-Sales'
+    name: 'Pre-Sales',
+    region_id: 1
+  },
+  {
+    name: 'Sales',
+    region_id: 2
+  },
+  {
+    name: 'Pre-Sales',
+    region_id: 2
   }
 ])
 
