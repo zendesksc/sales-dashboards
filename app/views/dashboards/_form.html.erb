@@ -17,11 +17,19 @@
   </div>
   <div class="form-group">
     <% regions_array = Region.all.map { |region| [region.name, region.id] } %>
-    <%= select_tag(:region, options_for_select(regions_array), { :class => "form-control", :id => "regionSelect" }) %>
+    <% if @dashboard.department != nil %>
+      <%= select_tag(:region, options_for_select(regions_array, @dashboard.department.region.id), { :class => "form-control", :id => "regionSelect" }) %>
+    <% else %>
+      <%= select_tag(:region, options_for_select(regions_array), { :class => "form-control", :id => "regionSelect" }) %>
+    <% end %>
   </div>
   <div class="form-group">
     <% departments_array = Department.all.map { |department| [department.name, department.id, { "data-region-id" => department.region_id}] } %>
-    <%= f.select(:department_id, options_for_select(departments_array), {}, { :class => "form-control", :id => "departmentSelect" }) %>
+    <% if @dashboard.department != nil %>
+      <%= f.select(:department_id, options_for_select(departments_array, @dashboard.department.id), {}, { :class => "form-control", :id => "departmentSelect" }) %>
+    <% else %>
+      <%= f.select(:department_id, options_for_select(departments_array), {}, { :class => "form-control", :id => "departmentSelect" }) %>
+    <% end %>
   </div>
   <div class="form-group">
     <div class="row">
@@ -59,7 +67,13 @@
   function setDepartments() {
     let selectedRegionId = $('#regionSelect').find(":selected").val()
     let newDepartments = getDepartmentsForRegion(selectedRegionId)
+
     $('#departmentSelect').empty().append(newDepartments)
+    
+    <% if @dashboard.department != nil %>
+      $('#departmentSelect').val(<%= raw @dashboard.department.id %>).prop('selected', true)
+    <% end %>
+
     $('#departmentSelect').show()
   }
 
