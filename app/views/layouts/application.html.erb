@@ -9,15 +9,6 @@
 
   <body>
     <div class="container">
-      <% if flash[:notice] %>
-        <div class="row">
-          <div class="col-md-12">
-            <div class="alert alert-success text-center">
-              <%= flash[:notice] %>
-            </div>
-          </div>
-        </div>
-      <% end %>
       <%= yield %>
     </div>
   </body>

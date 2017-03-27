@@ -8,6 +8,16 @@
   </div>
 </div>
 
+<% if flash[:notice] %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="alert alert-success text-center" id="flash">
+        <%= flash[:notice] %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <% @departments.each do |department| %>
   <% if department.dashboards.count > 0 %>
     <div class="dashboard-listing">
