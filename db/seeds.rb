@@ -19,3 +19,12 @@ Department.create([
     name: 'Pre-Sales'
   }
 ])
+
+Region.create([
+  {
+    name: 'EMEA'
+  },
+  {
+    name: 'AMER'
+  }
+])
