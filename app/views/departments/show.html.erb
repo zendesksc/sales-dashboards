@@ -1,6 +1,6 @@
 <% if @department.dashboards.length > 0 %>
   
-  <h1 class="dashboard-loading">Loading <%= @department.name %> dashboards...</h1>
+  <h1 class="dashboard-loading">Loading <%= @department.region.name %> <%= @department.name %> dashboards...</h1>
   
   <% @department.dashboards.each do |dashboard| %>
     <iframe src="<%= dashboard.url %>" frameborder="0" class="dashboard-iframe"></iframe>
@@ -30,7 +30,7 @@
 
 <% else %>
   <h1 class="dashboard-loading">
-    No dashboards found for <%= @department.name %>.
+    No dashboards found for <%= @department.region.name %> <%= @department.name %>.
   </h1>
 <% end %>
 
