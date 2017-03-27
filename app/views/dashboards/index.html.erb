@@ -21,7 +21,7 @@
 <% @departments.each do |department| %>
   <% if department.dashboards.count > 0 %>
     <div class="dashboard-listing">
-      <%= link_to department_path(department) do %>
+      <%= link_to department_path(department), :target => "_blank" do %>
         <h4><%= department.region.name %> <%= department.name %></h4>
       <% end %>
       <hr>
