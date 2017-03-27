@@ -1,3 +1,5 @@
+<% content_for :title, @department.region.name + " " + @department.name %>
+
 <% if @department.dashboards.length > 0 %>
   
   <h1 class="dashboard-loading">Loading <%= @department.region.name %> <%= @department.name %> dashboards...</h1>
