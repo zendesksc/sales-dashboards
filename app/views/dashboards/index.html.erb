@@ -12,7 +12,7 @@
   <h5>
     <%= d.name %> 
     <%= link_to department_path(d.department) do %>
-      <span class="badge"><%= d.department.name %></span>
+      <span class="badge"><%= d.department.region.name %> <%= d.department.name %></span>
     <% end %>
   </h5>
   <p><%= link_to d.url, d.url, target: "_blank" %> <span class="glyphicon glyphicon-new-window"></p>

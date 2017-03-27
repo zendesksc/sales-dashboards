@@ -2,7 +2,8 @@ require 'test_helper'
 
 class DepartmentTest < ActiveSupport::TestCase
   setup do
-    @department = Department.new({ name: 'sales'})
+    @region = Region.create({ name: 'EMEA' })
+    @department = @region.departments.build({ name: 'sales'})
   end
 
   test "should be valid" do
