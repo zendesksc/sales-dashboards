@@ -45,27 +45,26 @@
 
 <script>
 
-  let allOptions = $('#departmentSelect').children()
-  $('#departmentSelect').hide()
+  $(document).ready(() => {
 
-  let regionId = $('#regionSelect').find(":selected").val()
-  let newDepartments = getDepartmentsForRegion(regionId)
-  $('#departmentSelect').empty().html(newDepartments).show()
+    let departments = $('#departmentSelect').clone()
+    setDepartments()
 
-  $(document).on('change', '#regionSelect', function(e) {
-    let regionId = this.options[e.target.selectedIndex].value;
-    let newDepartments = getDepartmentsForRegion(regionId)
-    $('#departmentSelect').empty().html(newDepartments).show()   
-  })
-
-  function getDepartmentsForRegion(id) {
-    let newDepartments = [];
-    $(allOptions).each(function(index, department) {
-      if($(department).data('region-id') == id) {
-        newDepartments.push(department)
-      }
+    $('#regionSelect').on('change', () => {
+      setDepartments()
     })
-    return newDepartments;
-  }
+
+    function setDepartments() {
+      let selectedRegion = $('#regionSelect').val()
+      $('#departmentSelect').empty().append($(departments).html())
+      $('#departmentSelect option').each((i, d) => {
+        $(d).removeAttr('selected');
+        if($(d).data('region-id') != selectedRegion) {
+          $(d).remove()
+        }
+      })
+    }
+
+  })
 
 </script>
