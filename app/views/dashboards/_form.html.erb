@@ -46,12 +46,16 @@
 <script>
 
   let allOptions = $('#departmentSelect').children()
-
   $('#departmentSelect').hide()
-  setDepartments()
 
-  $('#regionSelect').change(function() {
-    setDepartments()
+  let regionId = $('#regionSelect').find(":selected").val()
+  let newDepartments = getDepartmentsForRegion(regionId)
+  $('#departmentSelect').empty().html(newDepartments).show()
+
+  $(document).on('change', '#regionSelect', function(e) {
+    let regionId = this.options[e.target.selectedIndex].value;
+    let newDepartments = getDepartmentsForRegion(regionId)
+    $('#departmentSelect').empty().html(newDepartments).show()   
   })
 
   function getDepartmentsForRegion(id) {
@@ -62,19 +66,6 @@
       }
     })
     return newDepartments;
-  }
-
-  function setDepartments() {
-    let selectedRegionId = $('#regionSelect').find(":selected").val()
-    let newDepartments = getDepartmentsForRegion(selectedRegionId)
-
-    $('#departmentSelect').empty().append(newDepartments)
-    
-    <% if @dashboard.department != nil %>
-      $('#departmentSelect').val(<%= raw @dashboard.department.id %>).prop('selected', true)
-    <% end %>
-
-    $('#departmentSelect').show()
   }
 
 </script>
