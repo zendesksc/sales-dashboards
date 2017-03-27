@@ -6,7 +6,7 @@
       <% @departments.each do |department| %>
         <% if department.dashboards.count > 0 %>
           <div class="col-md-6">
-            <%= link_to department do %>
+            <%= link_to department, target: "_blank" do %>
               <div class="block">
                 <%= department.region.name %> <%= department.name %>
               </div>
