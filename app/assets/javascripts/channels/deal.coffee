@@ -8,10 +8,10 @@ App.deal = App.cable.subscriptions.create "DealChannel",
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     $('#dealMessage').empty().append data['message']
-    $('#dealMessage').fadeIn()
+    $('#dealMessageContainer').fadeIn()
     
     clearMessage = () ->
-      $('#dealMessage').fadeOut()
+      $('#dealMessageContainer').fadeOut()
     
     setTimeout(clearMessage, 1000)
 
