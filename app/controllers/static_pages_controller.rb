@@ -4,4 +4,7 @@ class StaticPagesController < ApplicationController
     @departments = Department.all
   end
 
+  def deal  
+  end
+
 end

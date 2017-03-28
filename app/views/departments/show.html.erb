@@ -1,6 +1,10 @@
 <% content_for :title, @department.region.name + " " + @department.name %>
 
 <% if @department.dashboards.length > 0 %>
+
+  <div id="dealMessageContainer">
+    <h1 id="dealMessage"></h1>
+  </div>
   
   <h1 class="dashboard-loading">Loading <%= @department.region.name %> <%= @department.name %> dashboards...</h1>
   
