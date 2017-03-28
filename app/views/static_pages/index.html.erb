@@ -1,7 +1,7 @@
 <% content_for :title, "Available Departments" %>
 
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-8">
     <h3>Available Departments</h3>
     <hr>
     <div class="row">
@@ -18,10 +18,24 @@
       <% end %>
     </div>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-4">
     <h3>Admin</h3>
     <hr>
-    <%= link_to "Dashboards Admin", dashboards_path, class: 'btn btn-default btn-block' %>
-    <%= link_to "New Dashboard", new_dashboard_path, class: 'btn btn-success btn-block' %>
+    <div class="form-group">
+      <%= link_to "Dashboards Admin", dashboards_path, class: 'btn btn-default btn-block' %>
+    </div>
+    <div class="form-group">
+      <%= link_to "New Dashboard", new_dashboard_path, class: 'btn btn-success btn-block' %>
+    </div>
+    <hr>
+    <div class="alert alert-info text-center">Enter a message below to display it on all of the dashboards</div>
+      <div class="form-group">
+        <div class="input-group">
+          <input type="text" class="form-control" id="dealInput"/>
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" id="dealSubmit">Submit</button>
+          </span>
+        </div>
+      </div>
   </div>
 </div>

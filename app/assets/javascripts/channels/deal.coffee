@@ -8,6 +8,7 @@ App.deal = App.cable.subscriptions.create "DealChannel",
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     $('#dealMessage').empty().append data['message']
+    $('#dealMessage').fadeIn()
     
     clearMessage = () ->
       $('#dealMessage').fadeOut()
@@ -17,7 +18,6 @@ App.deal = App.cable.subscriptions.create "DealChannel",
   new: (message) ->
     @perform 'new', message: message
 
-$(document).on 'keypress', '[data-behaviour~=deal_speaker]', (event) ->
-  if event.keyCode is 13
-    App.deal.new event.target.value
-    event.target.value = ''
+$(document).on 'click', '#dealSubmit', (e) ->
+  App.deal.new($('#dealInput').val())
+  $('#dealInput').val('')
