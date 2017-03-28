@@ -19,5 +19,6 @@ App.deal = App.cable.subscriptions.create "DealChannel",
     @perform 'new', message: message
 
 $(document).on 'click', '#dealSubmit', (e) ->
-  App.deal.new($('#dealInput').val())
-  $('#dealInput').val('')
+  if ($('#dealInput').val() != '')
+    App.deal.new($('#dealInput').val())
+    $('#dealInput').val('')
