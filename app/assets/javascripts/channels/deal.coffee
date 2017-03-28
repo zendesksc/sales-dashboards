@@ -20,5 +20,22 @@ App.deal = App.cable.subscriptions.create "DealChannel",
 
 $(document).on 'click', '#dealSubmit', (e) ->
   if ($('#dealInput').val() != '')
+    $('#dealInfoMessage').removeClass('alert-danger').addClass('alert-info')
+    $('#dealInfoMessage').text('Enter a message to display it on the dashboards')
+    $('#dealInput').parent().removeClass('has-error')
+
     App.deal.new($('#dealInput').val())
     $('#dealInput').val('')
+    $('#dealInfoMessage').removeClass('alert-info').addClass('alert-success')
+    $('#dealInfoMessage').text('Message sent!')
+
+    successMessage = () ->
+      $('#dealInfoMessage').removeClass('alert-success').addClass('alert-info')
+      $('#dealInfoMessage').text('Enter a message to display it on the dashboards')
+    
+    setTimeout(successMessage, 1000)
+
+  else
+    $('#dealInfoMessage').removeClass('alert-info').addClass('alert-danger')
+    $('#dealInput').parent().addClass('has-error')
+    $('#dealInfoMessage').text('Input can\'t be blank')
