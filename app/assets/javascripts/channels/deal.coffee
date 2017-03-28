@@ -18,24 +18,31 @@ App.deal = App.cable.subscriptions.create "DealChannel",
   new: (message) ->
     @perform 'new', message: message
 
+originalMessage = 'Enter a message to display it on the dashboards'
+errorMessage = 'Input can\'t be blank!'
+messageSent = 'Message sent!'
+
 $(document).on 'click', '#dealSubmit', (e) ->
   if ($('#dealInput').val() != '')
-    $('#dealInfoMessage').removeClass('alert-danger').addClass('alert-info')
-    $('#dealInfoMessage').text('Enter a message to display it on the dashboards')
+    switchClass('alert-danger', 'alert-info')
+    $('#dealInfoMessage').text(originalMessage)
     $('#dealInput').parent().removeClass('has-error')
 
     App.deal.new($('#dealInput').val())
     $('#dealInput').val('')
-    $('#dealInfoMessage').removeClass('alert-info').addClass('alert-success')
-    $('#dealInfoMessage').text('Message sent!')
+    switchClass('alert-info', 'alert-success')
+    $('#dealInfoMessage').text(messageSent)
 
     successMessage = () ->
-      $('#dealInfoMessage').removeClass('alert-success').addClass('alert-info')
-      $('#dealInfoMessage').text('Enter a message to display it on the dashboards')
+      switchClass('alert-success', 'alert-info')
+      $('#dealInfoMessage').text(originalMessage)
     
     setTimeout(successMessage, 1000)
 
   else
-    $('#dealInfoMessage').removeClass('alert-info').addClass('alert-danger')
+    switchClass('alert-info', 'alert-danger')
     $('#dealInput').parent().addClass('has-error')
-    $('#dealInfoMessage').text('Input can\'t be blank')
+    $('#dealInfoMessage').text(errorMessage)
+
+switchClass = (one, two) ->
+  $('#dealInfoMessage').removeClass(one).addClass(two)
