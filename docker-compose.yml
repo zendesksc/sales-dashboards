@@ -12,3 +12,5 @@ services:
       - db
   db:
     image: postgres
+  redis:
+    image: redis
