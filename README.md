@@ -1,24 +1,15 @@
-# README
+# Sales Dashboards
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A wallboard display for sales data that shows special celebration screen when a new deal is won.
 
-Things you may want to cover:
+## Getting started
 
-* Ruby version
+You may use docker to develop the project as the stack is defined in `docker-compose.yml`, the process for setup is very similar to [Running in production](#production).
 
-* System dependencies
+If you would not like to use docker, the stack is assuming a postgres server (for the database) and a redis server (for pubsub). You can configure these the same way you would for any standard rails app.
 
-* Configuration
+## [Running in production](#production)
 
-* Database creation
+Install docker on your production machine, then run `docker-compose up`. This will use `docker-compose.yml` to create the production database, redis server, and front end.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The app will then be running on `http://localhost:3000`.
