@@ -13,7 +13,7 @@ App.deal = App.cable.subscriptions.create "DealChannel",
     clearMessage = () ->
       $('#dealMessageContainer').fadeOut()
     
-    setTimeout(clearMessage, 1000)
+    setTimeout(clearMessage, 20000)
 
   new: (message) ->
     @perform 'new', message: message
@@ -37,7 +37,7 @@ $(document).on 'click', '#dealSubmit', (e) ->
       switchClass('alert-success', 'alert-info')
       $('#dealInfoMessage').text(originalMessage)
     
-    setTimeout(successMessage, 1000)
+    setTimeout(successMessage, 20000)
 
   else
     switchClass('alert-info', 'alert-danger')
