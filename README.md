@@ -1,10 +1,10 @@
 # Sales Dashboards
 
-A wallboard display for sales data that shows special celebration screen when a new deal is won.
+A wallboard display for sales data that shows a special celebration screen when a new deal is won.
 
 ## Getting started
 
-This app is built on Docker to make it simple to get started. However, if you'd rather not use docker, you will need to have postgres, redis and rails installed, and will need to modify some files within the app to suit your environment. 
+This app is built on Docker to make it simple to get started. However, if you'd rather not use docker, you will need to have postgres, redis and rails installed. You will need to modify some files within the app to suit your environment. 
 
 ## Running in Development
 
@@ -20,7 +20,7 @@ Then in your other shell, run the following command to setup the database for de
 $ docker-compose exec web rails db:setup
 ```
 
-Anytime you need to run commands on the container, you will need to prefix it with `$ docker-compose exec web`. For example to create a model, the command would be `docker-compose exec web rails generate model ModelName title:string`.
+Anytime you need to run commands on the container, you will need to prefix it with `$ docker-compose exec web`. For example to create a model, the command would be `$ docker-compose exec web rails generate model ModelName title:string`.
 
 The app will be running on `http://localhost:3000`.
 
