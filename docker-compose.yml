@@ -13,5 +13,10 @@ services:
       - redis
   db:
     image: postgres
+    volumes:
+      - db-data:/code/db/data
   redis:
     image: redis
+
+volumes:
+  db-data:
