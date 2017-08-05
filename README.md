@@ -24,7 +24,7 @@ Anytime you need to run commands on the container, you will need to prefix it wi
 
 The app will be running on `http://localhost:3000`.
 
-## [Running in production](#production)
+## Running in production
 
 Install docker on your production machine, then, inside the app directory, run `$ docker-compose SECRET_KEY_BASE=mysecretkey -f production.yml up -d`. This will use `production.yml` to create the production database, redis server, and front end. 
 
