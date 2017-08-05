@@ -26,8 +26,13 @@ The app will be running on `http://localhost:3000`.
 
 ## Running in production
 
-Install docker on your production machine, then, inside the app directory, run `$ docker-compose SECRET_KEY_BASE=mysecretkey -f production.yml up -d`. This will use `production.yml` to create the production database, redis server, and front end. 
+Install docker on your production machine, then, inside the app directory, run:
 
+```
+$ SECRET_KEY_BASE=mysecretkey docker-compose -f production.yml up -d
+``` 
+
+This will use `production.yml` to create the production database, redis server, and front end. 
 Before you are able to see the app running, you'll need to setup the database, and precompile your assets.
 
 ```
@@ -37,6 +42,14 @@ $ docker-compose restart
 ```
 
 The app will then be running on `http://localhost:3000`.
+
+### Pulling updates
+
+If you need to `git pull` changes to the code, you will need to run 
+
+```
+$ docker-compose build --no-cache web
+```
 
 ### Reverse proxy with NGINX
 
