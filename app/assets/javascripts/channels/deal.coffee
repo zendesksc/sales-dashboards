@@ -9,6 +9,7 @@ App.deal = App.cable.subscriptions.create "DealChannel",
     # Called when there's incoming data on the websocket for this channel
     $('#dealMessage').empty().append data['message']
     $('#dealMessageContainer').fadeIn()
+    fallingShapes()
     
     clearMessage = () ->
       $('#dealMessageContainer').fadeOut()
