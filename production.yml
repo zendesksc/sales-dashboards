@@ -14,9 +14,7 @@ services:
       - db
       - redis
   db:
-    image: postgres:9.5.11
-    volumes:
-      - db-data:/var/lib/postgresql/data
+    image: postgres:9.6
   redis:
     image: redis:3
 
