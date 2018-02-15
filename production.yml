@@ -17,6 +17,3 @@ services:
     image: postgres:9.6
   redis:
     image: redis:3
-
-volumes:
-  db-data:

@@ -1,184 +1,180 @@
+'use strict';
+
 // Enums
 
-const PARENT = 'background'
+var PARENT = 'background';
 
-const shapes = {
+var shapes = {
   RECTANGLE: 0,
   CIRCLE: 1,
   TRIANGLE: 2,
   TRIANGLE_ALT: 3
-}
+};
 
-const colors = {
+var colors = {
   GREEN: '#78A300',
   TURQUOISE: '#37B8AF',
   PINK: '#EB4962',
   RED: '#EB6651',
   ORANGE: '#F79A3E',
   YELLOW: '#EFC93D'
-}
 
-// Helpers
+  // Helpers
 
-function randomValueFromObj(obj) {
-  let result
-  let count = 0
+}; function randomValueFromObj(obj) {
+  var result = void 0;
+  var count = 0;
   for (var prop in obj) {
     if (Math.random() < 1 / ++count) {
-      result = obj[prop]
+      result = obj[prop];
     }
   }
-  return result
+  return result;
 }
 
 // Classes
 
 function Canvas() {
+  var _this = this;
 
-  let width = window.innerWidth
-  let height = window.innerHeight
+  var width = window.innerWidth;
+  var height = window.innerHeight;
 
-  let shapeCount = 100
-  let inActiveShapes = []
+  var shapeCount = 100;
+  var inActiveShapes = [];
 
-  this.isRunning = false
+  this.isRunning = false;
 
-  this.start = () => {
-    let canvas = document.createElement('canvas')
-    canvas.id = 'canvas'
-    canvas.width = width
-    canvas.height = height
-    this.context = canvas.getContext('2d')
-    let parent = document.getElementById(PARENT)
-    parent.appendChild(canvas)
+  this.start = function () {
+    var canvas = document.createElement('canvas');
+    canvas.id = 'canvas';
+    canvas.width = width;
+    canvas.height = height;
+    _this.context = canvas.getContext('2d');
+    var parent = document.getElementById(PARENT);
+    parent.appendChild(canvas);
 
-    this.load()
-  }
+    _this.load();
+  };
 
-  this.load = () => {
-    this.shapes = []
-    for (let i = 0; i < shapeCount; i++) {
-      let size = Math.random() * (40 - 10) + 10
-      this.shapes.push(
-        new Shape(
-          randomValueFromObj(shapes),
-          Math.floor(Math.random() * width) + 1,
-          Math.random() * (-100 - -600) + -600,
-          size, size,
-          randomValueFromObj(colors))
-      )
+  this.load = function () {
+    _this.shapes = [];
+    for (var i = 0; i < shapeCount; i++) {
+      var size = Math.random() * (40 - 10) + 10;
+      _this.shapes.push(new Shape(randomValueFromObj(shapes), Math.floor(Math.random() * width) + 1, Math.random() * (-100 - -600) + -600, size, size, randomValueFromObj(colors)));
     }
 
-    this.isRunning = true
+    _this.isRunning = true;
 
-    this.loop()
-  }
+    _this.loop();
+  };
 
-  this.loop = () => {
-    if (this.isRunning) {
-      this.update()
-      this.render()
-      setTimeout(() => requestAnimationFrame(this.loop), 10)
+  this.loop = function () {
+    if (_this.isRunning) {
+      _this.update();
+      _this.render();
+      setTimeout(function () {
+        return requestAnimationFrame(_this.loop);
+      }, 10);
     }
-  }
+  };
 
-  this.update = () => {
+  this.update = function () {
 
-    if (inActiveShapes.length === this.shapes.length) {
-      this.isRunning = false
+    if (inActiveShapes.length === _this.shapes.length) {
+      _this.isRunning = false;
     }
 
-    this.shapes.forEach((shape) => {
+    _this.shapes.forEach(function (shape) {
 
       if (shape.y > height) {
-        shape.y = Math.random() * (-100 - -600) + -600
-        shape.isActive = false
+        shape.y = Math.random() * (-100 - -600) + -600;
+        shape.isActive = false;
 
         if (inActiveShapes.indexOf(shape) === -1) {
-          inActiveShapes.push(shape)
+          inActiveShapes.push(shape);
         }
-
       }
 
       if (shape !== null) {
-        shape.update()
+        shape.update();
       }
-    })
-  }
+    });
+  };
 
-  this.render = () => {
-    this.context.clearRect(0, 0, width, height)
+  this.render = function () {
+    _this.context.clearRect(0, 0, width, height);
 
-    this.shapes.forEach((shape) => {
+    _this.shapes.forEach(function (shape) {
       if (shape !== null) {
-        shape.render(this.context)
+        shape.render(_this.context);
       }
-    })
-  }
+    });
+  };
 }
 
 function Shape(type, x, y, w, h, color) {
+  var _this2 = this;
 
-  this.type = type
-  this.x = x
-  this.y = y
-  this.w = w
-  this.h = h
-  this.color = color
-  this.radius = this.w / 2
+  this.type = type;
+  this.x = x;
+  this.y = y;
+  this.w = w;
+  this.h = h;
+  this.color = color;
+  this.radius = this.w / 2;
 
-  this.vy = Math.random() * (10 - 3) + 3
-  this.isActive = true
+  this.vy = Math.random() * (10 - 3) + 3;
+  this.isActive = true;
 
-  this.update = () => {
-    if (this.isActive) {
-      this.y += this.vy
+  this.update = function () {
+    if (_this2.isActive) {
+      _this2.y += _this2.vy;
     }
-  }
+  };
 
-  this.render = (context) => {
-    if (this.isActive) {
-      switch (this.type) {
+  this.render = function (context) {
+    if (_this2.isActive) {
+      switch (_this2.type) {
         case shapes.RECTANGLE:
-          context.fillStyle = this.color
-          context.fillRect(this.x, this.y, this.w, this.h)
-          break
+          context.fillStyle = _this2.color;
+          context.fillRect(_this2.x, _this2.y, _this2.w, _this2.h);
+          break;
         case shapes.CIRCLE:
-          context.beginPath()
-          context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false)
-          context.fillStyle = this.color
-          context.fill()
-          break
+          context.beginPath();
+          context.arc(_this2.x, _this2.y, _this2.radius, 0, 2 * Math.PI, false);
+          context.fillStyle = _this2.color;
+          context.fill();
+          break;
         case shapes.TRIANGLE:
-          context.beginPath()
-          context.moveTo(this.x, this.y)
-          context.lineTo(this.x + this.w, this.y)
-          context.lineTo(this.x, this.y + this.h)
-          context.fillStyle = this.color
-          context.fill()
-          break
+          context.beginPath();
+          context.moveTo(_this2.x, _this2.y);
+          context.lineTo(_this2.x + _this2.w, _this2.y);
+          context.lineTo(_this2.x, _this2.y + _this2.h);
+          context.fillStyle = _this2.color;
+          context.fill();
+          break;
         case shapes.TRIANGLE_ALT:
-          context.beginPath()
-          context.moveTo(this.x, this.y)
-          context.lineTo(this.x - this.w / 1.2, this.y + this.h)
-          context.lineTo(this.x + this.w / 1.2, this.y + this.h)
-          context.fillStyle = this.color
-          context.fill()
-          break
+          context.beginPath();
+          context.moveTo(_this2.x, _this2.y);
+          context.lineTo(_this2.x - _this2.w / 1.2, _this2.y + _this2.h);
+          context.lineTo(_this2.x + _this2.w / 1.2, _this2.y + _this2.h);
+          context.fillStyle = _this2.color;
+          context.fill();
+          break;
       }
     }
-  }
-
+  };
 }
 
 // Main
 
 function fallingShapes() {
-  let background = document.getElementById(PARENT)
-  let oldCanvas = document.getElementById('canvas')
+  var background = document.getElementById(PARENT);
+  var oldCanvas = document.getElementById('canvas');
   if (oldCanvas !== null) {
-    background.removeChild(oldCanvas)
+    background.removeChild(oldCanvas);
   }
-  let canvas = new Canvas()
-  canvas.start()
+  var canvas = new Canvas();
+  canvas.start();
 }
